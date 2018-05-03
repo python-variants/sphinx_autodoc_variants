@@ -11,6 +11,8 @@
 
 from .variant_autodoc import PrimaryFunctionDocumenter
 from .variant_autodoc import PrimaryMethodDocumenter
+from .variant_autodoc import VariantFunctionDocumenter
+from .variant_autodoc import VariantMethodDocumenter
 
 from sphinx.domains.python import PythonDomain
 
@@ -28,6 +30,8 @@ except ImportError:
 def setup(app):
     # type: (Sphinx) -> Dict[Text, Any]
     app.add_autodocumenter(PrimaryFunctionDocumenter)
+    app.add_autodocumenter(VariantFunctionDocumenter)
     app.add_autodocumenter(PrimaryMethodDocumenter)
+    app.add_autodocumenter(VariantMethodDocumenter)
 
     return {'version': __version__, 'parallel_read_safe': True}
