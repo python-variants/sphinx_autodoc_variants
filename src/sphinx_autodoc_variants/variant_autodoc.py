@@ -4,6 +4,7 @@ Provides the automatic documenter type for variants
 
 from sphinx.ext.autodoc import Documenter, ModuleDocumenter
 from sphinx.ext.autodoc import ModuleLevelDocumenter, ClassLevelDocumenter
+from sphinx.ext.autodoc import ClassDocumenter
 from sphinx.ext.autodoc import FunctionDocumenter, MethodDocumenter
 from sphinx.ext.autodoc import DocstringSignatureMixin
 from sphinx.util.inspect import Signature
@@ -19,6 +20,8 @@ if False:  # pragma: nocover
 
 
 class BasePrimaryDocumenter(Documenter, DocstringSignatureMixin):
+    option_spec = ClassDocumenter.option_spec
+
     def format_args(self):
         # type: () -> Text
         # for primary functions, the relevant signature is __main_form__
@@ -48,7 +51,8 @@ class VariantFunctionDocumenter(PrimaryFunctionDocumenter):
     objtype = 'variant_function'
     directivetype = 'function'
     is_method = False
-    priority = 15
+    priority = 14
+    option_spec = FunctionDocumenter.option_spec
 
     @classmethod
     def can_document_member(cls, member, membername, isattr, parent):
@@ -75,7 +79,8 @@ class VariantMethodDocumenter(PrimaryMethodDocumenter):
     objtype = 'variant_method'
     directivetype = 'method'
     is_method = True
-    priority = 16
+    priority = 15
+    option_spec = MethodDocumenter.option_spec
 
     @classmethod
     def can_document_member(cls, member, membername, isattr, parent):
