@@ -17,6 +17,7 @@ develop-eggs
 .installed.cfg
 lib
 lib64
+src/sphinx_autodoc_variants/_version.py
 
 # Installer logs
 pip-log.txt
